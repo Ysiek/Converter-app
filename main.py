@@ -5,7 +5,7 @@ from spire.doc.common import *
 
 #CONST
 FILE_CONVERSE_CHOICE = ['PDF', 'WORD', 'TXT']
-CREATE_NEW_FILES_PAR = []
+CREATE_NEW_FILES_PAR = ["","PDF"]
 
 #initialise tkinter
 root = Tk()
@@ -21,8 +21,11 @@ def new_file(select):
 def create_new_file():
     document = Document()
     document.LoadFromFile(CREATE_NEW_FILES_PAR[0])
-    document.SaveToFile("TestToPDF.pdf", FileFormat.PDF)
-    document.close()
+    if CREATE_NEW_FILES_PAR[1]== "PDF":
+        document.SaveToFile("TestToPDF.pdf", FileFormat.PDF)
+    if CREATE_NEW_FILES_PAR[1] == "WORD":
+        document.SaveToFile("TestToDocx.docx", FileFormat.Docx)
+    document.Close()
 
 def browseFiles():
     file_name = filedialog.askopenfilename(filetypes = [("all files", "*.*")])
